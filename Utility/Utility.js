@@ -107,11 +107,59 @@ Sum()
         }
         
     }
+},
 
+
+/* M rows, N Cols, and M * N inputs for 2D Array.
+Print function to print 2 Dimensional Array.
+
+TwodArray(r, c)
+{
+    var a=new Array(r)(c);
+    var i,j;
+
+    console.log("Enter the elements of array: ");
+    
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            a[i][j]=readInput();
+        }
+    }
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            console.log(a[i][j]);
+        }
+        console.log("\n");
+    }
 }
-
-
-
+*/
+Gambling(stake, goal , trials)
+{
+    var bet=0,wins=0;
+		
+    for(var t=0;t<=trials;t++)
+    {
+        var cash=stake;
+        
+        while(cash>0 && cash<goal) 
+        {
+            bet++;
+            if(Math.random()<0.5)
+                cash++;					//wins
+            else
+                cash--;					//lose
+        }
+        if(cash==goal)
+            wins++;
+    }
+     console.log(wins + " wins of " + trials);
+     console.log("Percent of games won = " + 100.0 * wins / trials);
+     console.log("Avg  bets           = " + 1.0 * bet / trials);
+}
 
 }
 
