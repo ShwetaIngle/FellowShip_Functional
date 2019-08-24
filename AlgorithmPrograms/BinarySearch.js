@@ -1,20 +1,33 @@
 const util=require('../Utility/Utility.js');
 
-console.log("Enter the size of array: ");
-    var size=util.readInput();
+var fs = require('fs');
+var a=[]
 
-    var a=new Array(size);
-
-    console.log("Enter the elements of array: ");
-
-
-    for(let i=0;i<size;i++)
+fs.open('/home/user/Desktop/shweta/FunctionalPrograms/word.txt', 'r', function (err , fd){
+    if(err)
     {
-        a[i]=util.readInput();
+        console.log(err);        
     }
-    console.log("Enter the element to be search: ");
-    var skey=util.readInput();
+    console.log("file opened successfully");
     
-    util.binarSearch(a, skey);
+    fs.readFile(fd , function(err , data){
+        console.log(data.toString());
 
+        a=data.toString().split(",");
+        console.log(a);
+
+        console.log("Enter the element to be search: ");
+    var key=util.readInput();
+    
+    util.binarySearch(a, key);        
+    });
+
+});
+   
+    
+
+    
+    
+
+    
 
