@@ -40,17 +40,17 @@ module.exports = {
     /*
     StopWatch
     */
-    StartTime() {
+    StartTime() {                       //calculate start time
         var t = new Date;
         var start = t.getSeconds();
         return start;
     },
-    EndTime() {
+    EndTime() {                         //take end time
         var d = new Date;
         var end = d.getSeconds();
         return end;
     },
-    ElapsedTime(start, end) {
+    ElapsedTime(start, end) {               //calculate elapsed time
         var elapsed = (end - start);
         return elapsed;
     },
@@ -58,8 +58,19 @@ module.exports = {
     /*  Euclidean distance from the point (x, y) to the origin (0, 0). */
 
     EculideanDistance(a, b) {
-        distance = Math.sqrt(a * a + b * b);
-        return distance;
+        try{
+            if (a<0 || b<0)throw "value of x & y points must be >=0";
+                return [a,b];
+            if(typeof a!= number || typeof b!=number) throw "enter only numbers";
+                return ["a,b"];
+            
+            distance = Math.sqrt(a * a + b * b);
+            return distance;
+        }catch(err){
+            return err;
+            
+        }
+       
     },
 
     /* Sum of three integer ----
@@ -72,17 +83,17 @@ Sum(a) {
     
     n=a.length;
     var arr=new Array(n);
-    arr=a;
-    console.log(arr[0]);
-    
-    arr=a;
+    arr=a;   
    
      for (i = 0; i < n - 2; i++) {
          for (j = 1; j < n - 1; j++) {
              for (k = 2; k < n; k++) {
                  if (arr[i] + arr[j] + arr[k] == 0)
+                 {
+                     console.log(true);
+                     
                      console.log(`${arr[i]},${arr[j]},${arr[k]}`);
-                      
+                 }    
                  else
                      console.log(false);                      
              }
@@ -267,16 +278,21 @@ Sum(a) {
     dayofWeek(m, d, y) {
         console.log(m + "" + d + "" + y);
 
-        let y0 = parseInt(y - ((14 - m) / 12));
-        console.log("y0=" + y0);
+        // let y0 = parseInt(y - ((14 - m) / 12));
+        // console.log("y0=" + y0);
 
-        let x = parseInt(y0 + y0 / 4 - y0 / 100 + y0 / 400);
-        console.log("x=" + x);
-        let m0 = parseInt(m + 12 * ((14 - m) / 12) - 2);
-        console.log("m=" + m);
-        let day = parseInt((d + x + (31 * m0) / 12) % 7);
+        // let x = parseInt(y0 + (y0 / 4) - (y0 / 100) + (y0 / 400));
+        // console.log("x=" + x);
+        // let m0 = parseInt(m + 12 * ((14 - m) / 12) - 2);
+        // console.log("m=" + m);
+        // let day = parseInt((d + x + (31 * m0) / 12) % 7);
 
-        return (day);
+        let y0 =  parseInt(y - (14 - m) / 12);
+        let x =  parseInt(y0 + y0/4 - y0/100 + y0/400);
+        let m0 =  parseInt(m + 12 * ((14 - m) / 12) - 2);
+        let d0 =  parseInt((d + x + (31*m0)/12) % 7);
+
+        return (d0);
     },
 
     /* 1D Array take size of array and array elements from user */
@@ -437,5 +453,20 @@ Sum(a) {
 
     /*
     */
+
+    takename()
+    {
+        try{
+            var a=11;
+            if(a>10)
+            throw "invalid";
+
+         return "success";
+        }
+       catch(err) 
+       {
+       return err;
+       }
+    },
 
 }

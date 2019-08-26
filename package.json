@@ -1,0 +1,25 @@
+{
+  "name": "shweta",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hello.js",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShwetaIngle/FellowShip_Functional.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShwetaIngle/FellowShip_Functional/issues"
+  },
+  "homepage": "https://github.com/ShwetaIngle/FellowShip_Functional#readme"
+}

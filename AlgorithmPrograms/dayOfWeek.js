@@ -1,6 +1,5 @@
 const util=require('../Utility/Utility.js');
 
-
 console.log("Enter the month: ");
 month=util.readInput();
 
