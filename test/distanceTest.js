@@ -11,17 +11,20 @@ const assert = require('chai').assert;
 const d = require('../Utility/Utility.js');
 
 describe("test cases", function(){
-    let value=d.EculideanDistance(0,2);
+
+    let value=d.EculideanDistance(2,3);
 it("value of x & y points must be >=0",function(){
     assert.equal(value,"value of x & y points must be >=0");
 });
-value=d.EculideanDistance(-1,2);
-it("value of x & y points must be >=0",function(){
-    assert.equal(value,"value of x & y points must be >=0");
+
+value=d.EculideanDistance('s',2);
+it("enter only numbers",function(){
+    assert.equal(value,"enter only numbers");
 });
-// value=d.EculideanDistance('s',2);
-// it("enter only numbers",function(){
-//     assert.equal(value,"enter only numbers");
+
+//value = d.EculideanDistance(-1,2);
+// it("value of x & y points must be >=0",function(){
+//     assert.equal(value,"value of x & y points must be >=0");
 // });
 
 });

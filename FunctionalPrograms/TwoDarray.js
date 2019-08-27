@@ -7,3 +7,5 @@ console.log("Enter the no of columns: ");
 var columns=util.readInput(); 
 
 util.TwodArray(rows , columns);
+
+

@@ -18,8 +18,19 @@ module.exports = {
     larger than 120 or less than 3 (you may assume that the values you get are in that range). 
     */
     windChill(t, v) {
+        try{
+            if(t>50 || v<3 || v>120)
+                throw "temp must be >50 wind speed should be in 3-120mpr";
+
+                if(typeof t!= 'number' || typeof v!='number') throw "enter only numbers";  
+                
+                if(v < 0) throw "wind speed must be positive int value"; 
+
         let w = 35.74 + (0.6215 * t) + (0.4275 * t - 35.75) * Math.pow(v, 0.16);
         return w;
+        }catch(err){
+            return err;
+        }
     },
 
 
@@ -28,6 +39,10 @@ module.exports = {
     finding 2 roots of the quadratic equation
     */
     QuadraticRoot(a, b, c) {
+        try{
+            
+            if(typeof a!= 'number' || typeof c!='number' || typeof c!='number') throw "enter only numbers";
+
         let delta = b * b - 4.0 * a * c;
         sroot = Math.sqrt(delta);
 
@@ -36,6 +51,9 @@ module.exports = {
 
         console.log(root1);
         console.log(root2);
+        }catch(err){
+            return err;
+        }
     },
     /*
     StopWatch
@@ -58,19 +76,19 @@ module.exports = {
     /*  Euclidean distance from the point (x, y) to the origin (0, 0). */
 
     EculideanDistance(a, b) {
+        //console.log(parseInt(a) +" "+parseInt(b));
         try{
-            if (a<0 || b<0)throw "value of x & y points must be >=0";
-                return [a,b];
-            if(typeof a!= number || typeof b!=number) throw "enter only numbers";
-                return ["a,b"];
+            if (a<0 || b<0) throw "value of x & y points must be >=0";
+               
+            if(typeof a!= 'number' || typeof b!='number') throw "enter only numbers";
+                
             
             distance = Math.sqrt(a * a + b * b);
             return distance;
         }catch(err){
             return err;
             
-        }
-       
+        }       
     },
 
     /* Sum of three integer ----
@@ -80,7 +98,12 @@ module.exports = {
     */
     
 Sum(a) {
+
+    try{
+        if(typeof a!= 'number') throw "enter only numbers";
     
+        if(a.length <3 ) throw "enter at least 3 number of elements in array";
+
     n=a.length;
     var arr=new Array(n);
     arr=a;   
@@ -90,8 +113,7 @@ Sum(a) {
              for (k = 2; k < n; k++) {
                  if (arr[i] + arr[j] + arr[k] == 0)
                  {
-                     console.log(true);
-                     
+                     console.log(true);                     
                      console.log(`${arr[i]},${arr[j]},${arr[k]}`);
                  }    
                  else
@@ -99,6 +121,10 @@ Sum(a) {
              }
          }
      }
+     return "success";
+    }catch(err){
+        return err;
+    }
  },
 
 
@@ -106,6 +132,12 @@ Sum(a) {
    Print function to print 2 Dimensional Array.
    */
     TwodArray(row, col) {
+
+        try{
+            if(typeof row!= 'number' || typeof col!='number') throw "enter only numbers";
+
+            if(row < 1 || col<1) throw "give at least value of rows and columns >=2"; 
+
         var arr = new Array(col);
 
         for (let i = 0; i < row; i++) {
@@ -124,6 +156,10 @@ Sum(a) {
         for (let i = 0; i < row; i++) {
             console.log(arr[i]);
         }
+        return "success";
+    }catch(err){
+            return err;
+        };
     },
 
     /*
@@ -131,7 +167,14 @@ Sum(a) {
     */
 
     Gambling(stake, goal, trials) {
-        var bet = 0, wins = 0;
+
+        try{
+
+            if(stake <=0 || goal<=0 || trials< 1)throw "the value of stake & goal must be >0 and give at least 1 trails ";
+               
+            if(stake !='number' || goal!='number' || trials!='number')throw "Enter values of stake, goal & trails in number only ";
+            
+            var bet = 0, wins = 0;
 
         for (var t = 0; t <= trials; t++) {
             var cash = stake;
@@ -149,6 +192,9 @@ Sum(a) {
         console.log(wins + " wins of " + trials);
         console.log("Percent of games won = " + 100.0 * wins / trials);
         console.log("Avg  bets           = " + 1.0 * bet / trials);
+    }catch(err){
+        return err;
+    }
     },
 
     // permutation of string
@@ -174,8 +220,15 @@ Sum(a) {
     */
 
     toBinaryConversion(n) {
-        var b = n;
 
+       var b;
+
+        try{
+            if(typeof n!= 'number') throw "enter only numbers";
+
+            if(n<0) throw "enter positive integer number only";
+
+       
         var binary = new String();
         var b1 = new String();
 
@@ -188,8 +241,11 @@ Sum(a) {
         //console.log(b1.length);
         for (var i = len - 1; i >= 0; i--) {
             binary = binary + b1.charAt(i);                 //reverse the num
-        }
+        }                          
         return binary;
+    }catch(err){
+        return err;
+    }
     },
 
     /*convert to Binary using toBinary function
@@ -253,6 +309,13 @@ Sum(a) {
      you would have to make over Y years to pay off a P principal loan amount at R per cent 
     */
     MonthPay(principal, rate, year) {
+        try{
+            if(typeof principal!= 'number' || typeof rate!= 'number' ||typeof year!= 'number') 
+            throw "enter only numbers";
+
+            if(principal<=0 || rate<=0 || year<=0)
+                throw "principal, rate, year should be positive value";
+
         var r = rate / (12 * 100);   //monthly interest rate
         var n = 12 * year;         //no of months
 
@@ -261,6 +324,9 @@ Sum(a) {
 
         console.log("Total interest: " + interest);
         return (payment);
+        }catch(err){
+            return err;
+        }
 
     },
 
@@ -340,7 +406,7 @@ Sum(a) {
         let temp = 0;
 
         for (i = 0; i < n; i++) {
-            for (j = 0; j < n - i - 1; j++) {
+            for (j = 0; j < n -i- 1; j++) {
                 if (arr[j] > arr[j + 1]) {
                     // swap the elements
                     temp = arr[j];
@@ -348,7 +414,7 @@ Sum(a) {
                     arr[j + 1] = temp;
                 }
             }
-        }
+        } 
         return arr;
     },
 
@@ -356,8 +422,11 @@ Sum(a) {
     /* Binary search of string (works for only sorted array)
     */
     binarySearch(arr, key) {
-        arr.sort();                //sort the array
-        console.log(arr);
+
+        try{
+            //if(typeof arr!= 'string' || key !='string') throw "only string inputs are valid";
+
+            if(arr.length < 1) throw "not enough data";
 
         let first = 0;
         let last = arr.length - 1;
@@ -365,7 +434,7 @@ Sum(a) {
         while (last >= first) {
             let mid = Math.floor((last + first) / 2);     //find the mid
             if ((key === arr[mid])) {
-                console.log("element is found at index " + mid);
+                return "elememnt is found at index of "+mid;
                 break;
             }
             else if (key < arr[mid]) {
@@ -376,9 +445,13 @@ Sum(a) {
             }
         }
         if (first > last) {
-            console.log("element is not found.");
-
+            return "element is not found.";
         }
+    
+    }catch(err){
+        return err;
+    }
+
     },
 
     /** Write a Program to calculate the minimum number of Notes as well as the Notes to be 
@@ -454,19 +527,6 @@ Sum(a) {
     /*
     */
 
-    takename()
-    {
-        try{
-            var a=11;
-            if(a>10)
-            throw "invalid";
-
-         return "success";
-        }
-       catch(err) 
-       {
-       return err;
-       }
-    },
+   
 
 }

@@ -1,1 +1,1 @@
-pune, mumbai,abc,ijk,pqr,xyz,
+pune mumbai abc ijk pqr xyz
