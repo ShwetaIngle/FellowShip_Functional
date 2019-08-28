@@ -8,10 +8,10 @@ larger than 120 or less than 3 (you may assume that the values you get are in th
 const util=require('../Utility/Utility.js');
 
 console.log("Enter the temperature value: ");
-let temp=util.readInput();
+let temp=parseInt(util.readInput());
 
 console.log("Enter the wind speed value: ");
-let wspeed=util.readInput();
+let wspeed=parseInt(util.readInput());
 
 let windchill=util.windChill(temp,wspeed);
 console.log(windchill);

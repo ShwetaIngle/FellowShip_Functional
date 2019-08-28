@@ -1,6 +1,6 @@
 const util=require('../Utility/Utility.js');
 
-var a=util.oneDarray();
+var a=parseInt(util.oneDarray());
 util.Sum(a);
 
 

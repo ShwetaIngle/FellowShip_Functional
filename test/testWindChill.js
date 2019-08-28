@@ -5,7 +5,7 @@ const d = require('../Utility/Utility.js');
 describe("test cases", function(){
 
     let value=d.windChill(5 , 30);
-it("temp must be >50 wind speed should be in 3-120mpr",function(){
+it("temp must be >50 wind and speed should be in 3-120mpr",function(){
     assert.equal(value,"temp must be >50 wind speed should be in 3-120mpr");
 
 });

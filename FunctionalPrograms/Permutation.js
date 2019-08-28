@@ -1,33 +1,15 @@
-// const util = require('../Utility/Utility.js');
+/*
+    * @purpose: json parsing
+    * @author: Shweta Ingle
+    * @ version: 1.0
+    * since: 21-08-2019
+*/
 
-// var str = new String();
+const util = require('../Utility/Utility.js');
 
-// console.log("Enter the string: ");
-// str = util.readInput();
+var str = new String();
 
-// permutation(str);
+console.log("Enter the string: ");
+str = util.readInput();
 
-function stringPermutations(str) {
-    let letters = str.split('')
-      , results = [[letters.shift()]] 
-    while (letters.length) {
-        const currLetter = letters.shift()
-        let tmpResults = []
-        results.forEach(result => {
-            let rIdx = 0
-            while (rIdx <= result.length) {
-                const tmp = [...result]
-                tmp.splice(rIdx, 0, currLetter)
-                tmpResults.push(tmp)
-                rIdx++
-            }
-        }
-        results = tmpResults();
-    }
-    return results
-      .map(letterArray => letterArray.join(''))
-      .filter((el, idx, self) => (self.indexOf(el) === idx))
-      .sort()
-};
-
-stringPermutations(["abc"]);
+permutation(str);

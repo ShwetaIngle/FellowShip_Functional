@@ -20,7 +20,7 @@ module.exports = {
     windChill(t, v) {
         try{
             if(t>50 || v<3 || v>120)
-                throw "temp must be >50 wind speed should be in 3-120mpr";
+                throw "temp must be >50 and wind speed should be in 3-120mpr";
 
                 if(typeof t!= 'number' || typeof v!='number') throw "enter only numbers";  
                 
@@ -49,8 +49,8 @@ module.exports = {
         let root1 = (b + sroot) / (2 * a);
         let root2 = (b - sroot) / (2 * a);
 
-        console.log(root1);
-        console.log(root2);
+        console.log("root 1"+root1);
+        console.log("root 2"+root2);
         }catch(err){
             return err;
         }
@@ -127,6 +127,21 @@ Sum(a) {
     }
  },
 
+ /* 1D Array take size of array and array elements from user */
+
+ oneDarray() {
+    console.log("Enter the size of array: ");
+    let n = read.question();
+
+    var arr = new Array(n);
+
+    console.log("Enter the elements of array: ");
+
+    for (let i = 0; i < n; i++) {
+        arr[i] = read.question();
+    }
+    return arr;
+},
 
     /* M rows, N Cols, and M * N inputs for 2D Array.
    Print function to print 2 Dimensional Array.
@@ -170,9 +185,11 @@ Sum(a) {
 
         try{
 
-            if(stake <=0 || goal<=0 || trials< 1)throw "the value of stake & goal must be >0 and give at least 1 trails ";
-               
-            if(stake !='number' || goal!='number' || trials!='number')throw "Enter values of stake, goal & trails in number only ";
+            if(stake <=1 || goal<=1 || trials<= 1)
+            throw "the value of stake & goal must be >1 and give at least 1 trails ";
+                        
+            if(stake !='number' || goal!='number' || trials!='number')
+            throw "Enter values of stake, goal & trails in number only ";
             
             var bet = 0, wins = 0;
 
@@ -192,6 +209,7 @@ Sum(a) {
         console.log(wins + " wins of " + trials);
         console.log("Percent of games won = " + 100.0 * wins / trials);
         console.log("Avg  bets           = " + 1.0 * bet / trials);
+        return "done";
     }catch(err){
         return err;
     }
@@ -208,10 +226,25 @@ Sum(a) {
 
     //Write a Program to play a Cross Game or Tic-Tac-Toe Game
 
-    // ticTacToe()
-    // {
+    ticTacToe(row , col)
+    {
+        var arr = [[],[]];
+        let str = "";
 
-    // },
+        for (let i = 0; i < 3; i++) {
+            for(let j=0;j<3;j++){
+                str += (`${arr[[i][j]] = "__|"}`);       
+            }            
+            str += "\n";
+            for (let k=0; k< 3 ;k++){
+                if(row==i && col==k){
+                    str += (`${arr[[i][k]] = "X"}`); 
+                }
+
+            }
+        }
+        return str;
+    },
 
     // Algorithm programs
 
@@ -254,11 +287,14 @@ Sum(a) {
     */
 
     SwapNibble(n) {
-        let len = n.length;
-        var bno = new String();
-        bno = n;
+        try{
+            if(n<0) throw "enter positive integer number only";
 
-        if (len != 8)                      //check length of binary no it should be 8 b'coz 1byte=8bit
+        let len = n.length;
+        var bno = new String;
+        bno=n;
+         //check length of binary no it should be 8 b'coz 1byte=8bit if not do zero padding
+        if (len != 8)                     
         {
             let a = 8 - len;
             for (let i = 0; i < a; i++)            //add padding of zeros
@@ -268,6 +304,7 @@ Sum(a) {
         }
         console.log("Number after padding: " + bno);
 
+        //Swapping of nibbles
         var nibble1 = new String();
         var nibble2 = new String();
         for (let i = 0; i < 8; i++) {
@@ -278,25 +315,52 @@ Sum(a) {
                 nibble2 = nibble2 + bno.charAt(i);
         }
         let swapnibble = nibble2 + nibble1;
-        return swapnibble;
+        console.log("Binary no after swapping nibbles is: "+swapnibble);
+        
+        //decimal conversion of binary swapped number
+
+        let deci=0;
+        let count=0;
+        for (let i = 7; i >= 0; i--) {
+        
+            let a = swapnibble.charAt(i);
+            // console.log(i);
+             deci += (a * Math.pow(2 , count));
+             count++;
+         }
+        return deci;
+        }catch(err){
+            return err;
+        }
+        
     },
     // Decimal conversion of number after swapping nibbles
 
-    DecimalConversion(d) {
-        var num = new String();
-        num = d;
-        let deci = 0;
-        for (let i = 7; i >= 0; i--) {
-            let a = num.charAt(i);
-            deci = deci + (a * Math.pow(2, i));
-        }
-        return deci;
-    },
+    // DecimalConversion(d) {
+    //     var num = new String();
+    //     num = d;
+    //     let deci = 0;
+    //     console.log(num);
+        
+    //     for (let i = 7; i >= 0; i--) {
+    //         if(num.charAt(i) == 1)
+    //         {
+    //         //let a = num.charAt(i);
+    //         deci = deci + (1 * Math.pow(2, i));
+    //         }
+    //     }
+    //     return deci;
+    // },
 
     /*
-        the square root of a nonnegative number c given in the input using Newton's method:
+        the square root of a nonnegative integer number c given in the input using Newton's method:
     */
     SquareRoot(c) {
+            try{
+                if(typeof c!= 'number') throw "only number inputs are valid";
+
+                if(c<0) throw "enter only non negative numbers";
+
         var epsilon = 1.0e-15;
         var t = c;
 
@@ -304,6 +368,9 @@ Sum(a) {
             t = (c / t + t) / 2.0;
         }
         return t;
+    }catch(err){
+        return err;
+    }
     },
     /*reads in three command-line arguments P, Y, and R and calculates the monthly payments
      you would have to make over Y years to pay off a P principal loan amount at R per cent 
@@ -330,28 +397,47 @@ Sum(a) {
 
     },
 
-    /*temperature conversion Celsius to Fahrenheit and FahrenheitToCelsius*/
+    /*temperature conversion Celsius to Fahrenheit and FahrenheitToCelsius
+        works for negative temp values and for only number inputs
+    */
+
     CelsiusToFahrenheit(temp) {
+        try{
+            if(typeof temp!= 'number') throw "only number inputs are valid";
+
         var ft = (temp * (9 / 5) + 32);
         return ft;
+        }catch(err){
+            return err;
+        }
     },
+
     FahrenheitToCelsius(temp) {
+        try{
+            if(typeof temp!= 'number') throw "only number inputs are valid";
+
         var ct = (temp - 32) * 5 / 9;
         return ct;
+    }catch(err){
+        return err;
+    }
     },
+
+
     /*function that takes a date as input and prints the day of the week that date falls on
     */
     dayofWeek(m, d, y) {
-        console.log(m + "" + d + "" + y);
+        
+        try{
+            if(typeof m!= 'number' || typeof d!= 'number' ||typeof y!= 'number') 
+            throw "enter only numbers";
 
-        // let y0 = parseInt(y - ((14 - m) / 12));
-        // console.log("y0=" + y0);
+            if(m<=0 && m>12 || d<1&&d>31)
+                throw "enter value of month between 1-12 and value of day between 1-31";
 
-        // let x = parseInt(y0 + (y0 / 4) - (y0 / 100) + (y0 / 400));
-        // console.log("x=" + x);
-        // let m0 = parseInt(m + 12 * ((14 - m) / 12) - 2);
-        // console.log("m=" + m);
-        // let day = parseInt((d + x + (31 * m0) / 12) % 7);
+            if(m<0 || d<0 || y<0)
+            throw "only positive numbers are valid";
+
 
         let y0 =  parseInt(y - (14 - m) / 12);
         let x =  parseInt(y0 + y0/4 - y0/100 + y0/400);
@@ -359,33 +445,25 @@ Sum(a) {
         let d0 =  parseInt((d + x + (31*m0)/12) % 7);
 
         return (d0);
+
+        }catch(err){
+            return err;
+        }        
     },
 
-    /* 1D Array take size of array and array elements from user */
+    
+    //Insertion sort of strings works for only string inputs
 
-    oneDarray() {
-        console.log("Enter the size of array: ");
-        let n = read.question();
+    InsertionSort(arr) {
+                
+        try{
+            if(typeof arr!= 'string') throw "only string inputs are valid";
 
-        var arr = new Array(n);
-
-        console.log("Enter the elements of array: ");
-
-        for (let i = 0; i < n; i++) {
-            arr[i] = read.question();
-        }
-        return arr;
-    },
-
-
-    //Insertion sort of strings 
-
-    InsertionSort() {
-        var arr = new Array();
-        arr = this.oneDarray();
-
+            if(arr.length < 2) throw "not enough data";
+        
         let n = arr.length;       //take length of array
 
+        //loop for sorting
         for (let i = 1; i < n; i++) {
             j = i;
             while (j > 0 && arr[j - 1] > arr[j]) {
@@ -396,11 +474,20 @@ Sum(a) {
             }
         }
         return arr;
+    }catch(err){
+        return err;
+    }
     },
 
     //Bubble sort   
 
     bubbleSort(arr) {
+
+        try{
+            if(typeof arr!= 'number') throw "only number inputs are valid";
+
+            if(arr.length < 2) throw "not enough data";
+
         let n = arr.length;
 
         let temp = 0;
@@ -416,15 +503,18 @@ Sum(a) {
             }
         } 
         return arr;
+    }catch(err){
+        return err;
+    }
     },
 
 
-    /* Binary search of string (works for only sorted array)
+    /* Binary search of string (works for only sorted array) and for string inputs only
     */
     binarySearch(arr, key) {
 
         try{
-            //if(typeof arr!= 'string' || key !='string') throw "only string inputs are valid";
+            if(typeof arr!= 'string' || key !='string') throw "only string inputs are valid";
 
             if(arr.length < 1) throw "not enough data";
 
@@ -458,6 +548,11 @@ Sum(a) {
      returned by the Vending Machine as a Change
      */
     vendingMachine(amount) {
+        try{
+            if(typeof amount!= 'number') throw "only number inputs are valid";
+
+            if(amount<0) throw "enter only non negative numbers";
+
         let one = 0, two = 0;
         let five = 0;
         let ten = 0;
@@ -522,6 +617,9 @@ Sum(a) {
             console.log("One: " + one);
 
         return 0;
+    }catch(err){
+        return err;
+    }
     },
 
     /*

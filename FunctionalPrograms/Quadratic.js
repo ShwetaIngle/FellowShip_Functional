@@ -1,15 +1,13 @@
 const util=require('../Utility/Utility.js');
 
 console.log("Enter value of a: ");
-let one=util.readInput();
+let one=parseInt(util.readInput());
 
 console.log("Enter value of b: ");
-let two=util.readInput();
+let two=parseInt(util.readInput());
 
 console.log("Enter value of c: ");
-let three=util.readInput();
+let three=parseInt(util.readInput());
 
 util.QuadraticRoot(one, two, three);
 
-var a=9;
-console.log(Math.sqrt(a));

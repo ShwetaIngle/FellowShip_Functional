@@ -1,13 +1,13 @@
 const util=require('../Utility/Utility.js');
 
 console.log("Enter the month: ");
-month=util.readInput();
+month=parseInt(util.readInput());
 
 console.log("Enter the date: ");
-day=util.readInput();
+day=parseInt(util.readInput());
 
 console.log("Enter the year: ");
-year=util.readInput();
+year=parseInt(util.readInput());
 
 var d0=util.dayofWeek(month , day ,year);
 console.log(d0);
