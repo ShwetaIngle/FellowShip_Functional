@@ -1,13 +1,3 @@
-/******************************************************************************
- *  Execution:    ~/Desktop/shweta/dataStructureProgram$ node linkedList.js
- *  
- *  Purpose: linked-list functions: insert(), remove(), printList......
- *
- *  @author  Ingle Shweta
- *  @version 1.0
- *  @since   30-08-2019
- *
- ******************************************************************************/
 
 const read = require("readline-sync");
 var fs = require('fs');
@@ -96,11 +86,9 @@ class linkedList
      */
     remove(index)
     {
-        let temp = this.head;
         if(index == 0)
         {
-            temp = temp.next;
-            this.head = temp;
+            this.head = head.next;
         }
         else
         {
@@ -157,7 +145,7 @@ class linkedList
         let index = 0;
         let flag=0;
 
-        while(temp != null)
+        while(temp.next != null)
         {
             if(temp.data === data)
             {
@@ -167,18 +155,17 @@ class linkedList
             index++;
             temp = temp.next;            
         }
-        //console.log(index);
+        console.log(index);
 
         if(flag == 1)
         {
             this.remove(index);
-        //    writeData();
+            this.size--;
         }
         else{
             this.insert(data);
-            //this.writeData();
+            this.size++;
         }     
-        this.writeData();
     }
 
     /*
@@ -202,26 +189,21 @@ class linkedList
         }
         console.log(str);        
     }
-
-    writeData()
-    {
-        var temp = this.head;
-        var str = "";
-        while(temp != null)
-        {
-            str += temp.data+" ";
-            temp = temp.next;
-        }
-        fs.writeFile('word.txt', str, function(err) {
-          if (err) {
-               return console.error(err);
-            }
-        });
-        console.log("please check the file.");
-        
-    }
-
     
 }
 
-module.exports = {linkedList}
+var ll = new linkedList();
+ll.insert(10);
+ll.insert(20);
+ll.insertAtStart(25)
+ll.insert(5);
+ll.insertAt(2, 50)
+ll.printList();
+//ll.remove(3)
+//ll.printList();
+//ll.removeItem(10)
+
+ll. searchElement(20)
+ll.printList();
+ll. searchElement(100)
+ll.printList();

@@ -19,7 +19,7 @@ class Node{
     }
 }
 
-class linkedList
+class orderedList
 {
     /*
      * read the input from user 
@@ -55,6 +55,55 @@ class linkedList
             }
         this.size++;
     }
+
+    insertData(data)
+    {   
+        var node = new Node(data);
+        let temp;
+        //let count=0;
+
+        if(this.head == null)
+            this.head = node;
+
+
+        // else
+        //     {
+        //         temp= this.head;            
+                
+        //         while(temp.next != null)
+        //         {   
+        //             temp = temp.next;
+        //         }
+        //      temp.next = node; 
+        //     }
+        //     this.size++;          
+
+        else
+        {
+            
+            temp = this.head;
+            if(temp.data > data)
+            {
+                node.next = temp;
+                this.head = node;
+            }
+            
+    
+        }
+        
+    }
+
+
+ /*
+  * sort the linked list 
+  */
+
+    // sortList(data)
+    // {
+
+    // }
+
+
 
  /*
   * adds a given element at start of the list 
@@ -111,7 +160,7 @@ class linkedList
             }
             let n1 = temp.next;
             temp.next = n1.next;
-            n1 = null;                          //delet item from memory
+            n1.next = null;                          //delet item from memory
         }
         this.size--;
     }
@@ -224,4 +273,4 @@ class linkedList
     
 }
 
-module.exports = {linkedList}
+module.exports = {orderedList}
