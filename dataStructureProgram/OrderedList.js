@@ -19,14 +19,21 @@ var filecontent = fs.readFileSync('numberinput.txt','utf8');
 //console.log(filecontent);
 filecontent = filecontent.trim();
 
-let filedata = filecontent.split(",");
-console.log(filedata);
+let filedata = filecontent.split(" ");
+//console.log(filedata);
 
 var ol = new util.orderedList();
 
 for(let i=0; i<filedata.length;i++)
 {
-    ol.insertData(filedata[i]);
+    ol.insertData(parseInt(filedata[i]));
 }
 
 ol.printList();
+
+console.log("Enter a number: ");
+var value = ol.readInput();
+
+ol.searchElement(value);
+
+//ol.printList();

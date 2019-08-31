@@ -35,74 +35,41 @@ class orderedList
     }
 
  /*
-  * adds a given element at the end of the list 
+  * adds a given element in the list 
   */
-    insert(data)
-    {   
-        var node = new Node(data);
-        var temp;
-
-        if(this.head == null)
-            this.head = node;
-        else
-            {
-                temp= this.head;
-                while(temp.next != null)
-                {   
-                    temp = temp.next;
-                }
-             temp.next = node;       
-            }
-        this.size++;
-    }
-
+  
     insertData(data)
     {   
         var node = new Node(data);
-        let temp;
-        //let count=0;
-
-        if(this.head == null)
+        
+        if(this.head == null){
+            this.head = node;    
+        }
+        else if(data < this.head.data)
+        {
+            node.next = this.head;
             this.head = node;
-
-
-        // else
-        //     {
-        //         temp= this.head;            
-                
-        //         while(temp.next != null)
-        //         {   
-        //             temp = temp.next;
-        //         }
-        //      temp.next = node; 
-        //     }
-        //     this.size++;          
-
+        }
         else
         {
+           let prev = null;
+            let temp = this.head;
+            // console.log("77---------",temp.data);
+            // console.log("78--------",data);
+            //console.log(temp.data);
             
-            temp = this.head;
-            if(temp.data > data)
+             while(temp !== null && temp.data < data)
             {
-                node.next = temp;
-                this.head = node;
+                //console.log("84------"+temp.data);
+                prev = temp;                
+                temp = temp.next;
             }
-            
-    
+            node.next = temp;
+            prev.next = node;
         }
         
+                 
     }
-
-
- /*
-  * sort the linked list 
-  */
-
-    // sortList(data)
-    // {
-
-    // }
-
 
 
  /*
@@ -199,33 +166,32 @@ class orderedList
 
     searchElement(data)
     {
-              
-        let node = new Node();
+        
         let temp = this.head;
         
         let index = 0;
         let flag=0;
 
-        while(temp != null)
-        {
-            if(temp.data === data)
+        while(temp.next !== null)
+        {          
+
+            if(temp.data == data)
             {
+                console.log(temp.data);
+
                 flag = 1;
                 break;
             }
-            index++;
+            index++;           
             temp = temp.next;            
         }
-        //console.log(index);
 
         if(flag == 1)
         {
             this.remove(index);
-        //    writeData();
-        }
+        } 
         else{
-            this.insert(data);
-            //this.writeData();
+            this.insertData(data);
         }     
         this.writeData();
     }
@@ -261,7 +227,7 @@ class orderedList
             str += temp.data+" ";
             temp = temp.next;
         }
-        fs.writeFile('word.txt', str, function(err) {
+        fs.writeFile('numberinput.txt', str, function(err) {
           if (err) {
                return console.error(err);
             }

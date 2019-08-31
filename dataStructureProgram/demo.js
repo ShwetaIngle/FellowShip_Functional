@@ -1,209 +1,92 @@
-
-const read = require("readline-sync");
-var fs = require('fs');
-
-class Node{
-    constructor(data){
-    this.data=data;
-    this.next=null;
-    }
-}
-
-class linkedList
+class Stack
 {
-    /*
-     * read the input from user 
-     */
-    readInput() {
-        let input = read.question();
-        return input;
-    }
-
     constructor(){
-        this.head=null;
-        this.size=0;
-    }
-
- /*
-  * adds a given element at the end of the list 
-  */
-    insert(data)
-    {   
-        var node = new Node(data);
-        var temp;
-
-        if(this.head == null)
-            this.head = node;
-        else
-            {
-                temp= this.head;
-                while(temp.next != null)
-                {   
-                    temp = temp.next;
-                }
-             temp.next = node;       
-            }
-        this.size++;
-    }
-
- /*
-  * adds a given element at start of the list 
-  */
-    insertAtStart(data)
-    {
-        var node = new Node(data);
-    
-        node.next = this.head;
-        this.head = node;
-        this.size++;
-    }
-    /*
-     * adds a given element at specific index of the list 
-     */
-    insertAt(index, data)
-    {
-        var node = new Node(data);
-        var temp = this.head;
-
-        if(index == 0)
-        {   
-            this.insertAtStart(data);
-        }
-        else
-        {
-            for(let i=0; i< index-1; i++)
-            {   
-                temp = temp.next;
-            }
-            node.next = temp.next;
-            temp.next = node;
-        }
-        this.size++;
+        this.stackdata = [];       //creates a new stack that is empty
+        this.top=0;
     }
 
     /*
-     *removes the item at position <index>, it needs index position of item 
+     * adds a new item to the top of stack. It needs data
      */
-    remove(index)
+    push(data)
     {
-        if(index == 0)
+        this.stackdata[this.top] = data;
+        this.top++;
+        //console.log("top--"+this.top);        
+    }
+
+    /*
+     * removes an item from top of stack. It needs no data parameter. The stack is modified
+     */
+    pop()
+    {
+        if(this.top == -1)
         {
-            this.head = head.next;
+            console.log("empty stack");
+            //break;        
         }
         else
         {
-            let temp = this.head;
-            for(let i=0; i<index-1; i++)
-            {
-                temp = temp.next;
-            }
-            let n1 = temp.next;
-            temp.next = n1.next;
-            n1 = null;                          //delet item from memory
+            this.top--;
+            let item = this.stackdata[this.top];
+            this.stackdata[this.top] = 0;
         }
-        this.size--;
     }
 
-     /*
-     *removes the item from list, it needs an item of list
+    /*
+     * returns an item from top of stack does not remove it. It needs no data parameter. The stack is modified
      */
-    removeItem(data)
+    peak()
     {
-        let temp = this.head;
-        let pre = null;
-
-        while (temp != null)
+        if(this.top == -1)
         {
-            if(temp.data === data)              //compare temp data with data u want delete
-            {
-                if(pre.next == null)
-                {
-                    this.head = temp.next;      
-                }
-                else
-                {
-                    pre.next = temp.next;
-                }
-                this.size--;
-            }
-            pre = temp;
-            temp = temp.next;
+            console.log("empty stack");      
         }
+        else
+        {
+            let item = this.stackdata[this.top-1];
+            console.log("peaked item: "+item);
+        }
+
     }
 
-    /* 
-     * Take a user input to search a Word in the List. If the Word is not found then add it to the list, 
-     * and if it found then remove the word from the List
+    /*
+     * check wether stack is empty or not.
      */
-
-    searchElement(data)
+    isEmpty()
     {
-              
-        let node = new Node();
-        let temp = this.head;
+        if(this.top == -1)
+        {
+            return false;     
+        }
+        else
+            return true;
+    }
+
+    /*
+     * returns size of stack
+     */
+    size()
+    {
+        return this.top;
         
-        let index = 0;
-        let flag=0;
-
-        while(temp.next != null)
-        {
-            if(temp.data === data)
-            {
-                flag = 1;
-                break;
-            }
-            index++;
-            temp = temp.next;            
-        }
-        console.log(index);
-
-        if(flag == 1)
-        {
-            this.remove(index);
-            this.size--;
-        }
-        else{
-            this.insert(data);
-            this.size++;
-        }     
     }
-
     /*
-     * print size of the list 
+     *  print the element of the stack
      */
-    size_of_list(){
-        console.log("size of list: "+this.size);
-    }
-
-    /*
-     * print element of the list 
-     */
-    printList()
-    {
-        var temp = this.head;
-        var str = "";
-        while(temp != null)
-        {
-            str += temp.data+" ";
-            temp = temp.next;
-        }
-        console.log(str);        
-    }
-    
+    printStack() 
+    { 
+        var str = ""; 
+        for (var i = 0; i < this.stackdata.length; i++) 
+            str += this.stackdata[i] + " "; 
+        return (str); 
+    } 
 }
 
-var ll = new linkedList();
-ll.insert(10);
-ll.insert(20);
-ll.insertAtStart(25)
-ll.insert(5);
-ll.insertAt(2, 50)
-ll.printList();
-//ll.remove(3)
-//ll.printList();
-//ll.removeItem(10)
 
-ll. searchElement(20)
-ll.printList();
-ll. searchElement(100)
-ll.printList();
+let s = new Stack;
+
+s.push(10)
+s.push(20)
+console.log("stack data--"+s.printStack());
+

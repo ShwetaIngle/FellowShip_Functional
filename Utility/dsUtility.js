@@ -12,6 +12,13 @@
 const read = require("readline-sync");
 var fs = require('fs');
 
+// module.exports = {
+// readInput() {
+//     let input = read.question();
+//     return input;
+// }
+// }
+
 class Node{
     constructor(data){
     this.data=data;
@@ -224,4 +231,220 @@ class linkedList
     
 }
 
-module.exports = {linkedList}
+/*
+ *  stack implementation of push, pop, peak, size and isEmpty functions
+ */
+
+class Stack
+{
+    constructor(){
+        this.stackdata = [];       //creates a new stack that is empty
+        this.top=0;
+    }
+
+    /*
+     * adds a new item to the top of stack. It needs data
+     */
+    push(data)
+    {
+        this.stackdata[this.top] = data;
+        this.top++;
+        //console.log("top--"+this.top);        
+    }
+
+    /*
+     * removes an item from top of stack. It needs no data parameter. The stack is modified
+     */
+    pop()
+    {
+        if(this.top == -1)
+        {
+            console.log("empty stack");
+            //break;        
+        }
+        else
+        {
+            this.top--;
+            let item = this.stackdata[this.top];
+            this.stackdata[this.top] = 0;
+        }
+    }
+
+    /*
+     * returns an item from top of stack does not remove it. It needs no data parameter. The stack is modified
+     */
+    peak()
+    {
+        if(this.top == -1)
+        {
+            console.log("empty stack");      
+        }
+        else
+        {
+            let item = this.stackdata[this.top-1];
+            console.log("peaked item: "+item);
+        }
+
+    }
+
+    /*
+     * check wether stack is empty or not.
+     */
+    isEmpty()
+    {
+        if(this.top == -1)
+        {
+            return false;     
+        }
+        else
+            return true;
+    }
+
+    /*
+     * returns size of stack
+     */
+    size()
+    {
+        return this.top;        
+    }
+    /*
+     *  print the element of the stack
+     */
+    printStack() 
+    { 
+        var str = ""; 
+        for (var i = 0; i < this.stackdata.length; i++) 
+            str += this.stackdata[i] + " "; 
+        return (str); 
+    } 
+}
+
+/*
+ * Queue implementation : enQueue(), deQueue(), printSize(),isEmpty(), printQueue()
+ */
+class Queue
+{
+
+    readInput() {
+        let input = read.question();
+        return input;
+    }
+
+    constructor()
+    {
+        this.queueData = [];            //creates a new empty queue
+        this.front = 0;
+        this.rear = 0;
+        this.size = 0;
+        this.balance = 25000;
+    }
+
+    /*
+     * adds a new item to the rear of the queue. It needs data input
+     */
+    enQueue(data)
+        {            
+            this.queueData[this.rear] = data;            
+            this.rear++;  
+            this.size++;
+            //console.log(this.rear);
+                     
+        }
+
+    /*
+     * deletes the front item from the queue. It needs no data input
+     */
+    deQueue()
+    {          
+        this.front++;  
+        this.size--;
+    }
+
+    /*
+     * returns the size of queue
+     */
+    
+    printSize()
+    {
+        return this.size;
+    }
+
+    /*
+     * tests whether queue is empty or not returns boolean value
+     */
+    isEmpty()
+    {
+        if(this.size <= 0)
+            return true;
+        else
+            return false;
+    }
+
+     /*
+     * prints the elements of queue
+     */
+    printQueue()
+    {
+    var str = ""; 
+    for(let i = this.front; i < this.rear; i++) 
+    {
+        str += this.queueData[i] +" "; 
+    }
+    console.log(str);
+    }  
+    
+    withdraw(wamount)
+    {
+        if(this.balance < wamount){
+            return "Not enough balance";
+        }           
+        else
+        {
+            this.balance = this.balance - wamount;
+            console.log("balance---"+this.balance); 
+        }        
+    }
+    deposite(damount)
+    {
+        this.balance = this.balance + damount;
+       console.log("balance--"+this.balance); 
+    }
+    cashCounter(people)
+    {
+        console.log("initial balance---"+this.balance);
+        
+
+        for(let i=1; i<=people; i++)
+        {
+
+            console.log("Do you want to withdraw or deposite:\nPress 1 for withraw or press 2 for deposite");
+            let ch = parseInt(this.readInput());
+
+            switch(ch)
+            {
+                case 1:
+                {
+                   console.log("Enter the withdraw amount :");
+                    let amount = this.readInput();
+                    this.withdraw(amount);
+                    this.deQueue();
+                    this.printQueue();
+                    break;
+                } 
+            case 2:
+                {
+                    console.log("Enter the deposite amount :");
+                    let amount = this.readInput();
+                    this.deposite(amount);
+                    this.deQueue();
+                    this.printQueue();
+                    break;
+                }
+            }
+        }
+
+    }
+}
+
+module.exports = {linkedList , Stack, Queue}
+
