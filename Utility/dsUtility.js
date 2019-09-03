@@ -12,17 +12,18 @@
 const read = require("readline-sync");
 var fs = require('fs');
 
-// module.exports = {
-// readInput() {
-//     let input = read.question();
-//     return input;
-// }
-// }
+class ReadInput {
+    readInput() {
+        let input = read.question();
+        return input;
+    }
+    }
 
 class Node{
     constructor(data){
     this.data=data;
     this.next=null;
+    this.top=null;
     }
 }
 
@@ -228,6 +229,51 @@ class linkedList
         
     }
 
+    /*
+     *   stack push using linked list
+     */
+    stackPushUsingList(data)
+    {
+        let node = new Node(data);
+        
+        if(this.head==null)
+        {
+            this.head=node;
+            this.top=node;
+        }
+        else
+        {
+            node.next = this.head
+             this.head = node
+             this.top = node
+        }
+        // process.stdout.write(` ${this.head.data}`);
+        this.size++                                 
+    }
+
+    displayStackList() 
+    {
+        let temp=this.top;
+        
+        while(temp!=null)
+        {
+            process.stdout.write(` ${temp.data}`);
+            temp=temp.next;
+        }
+    }
+
+    /*
+     *   Queue using linked list
+     */
+
+     enQueueLIst()
+     {
+        let node = new Node();
+
+        
+     }
+
+
     
 }
 
@@ -336,7 +382,7 @@ class Queue
         this.front = 0;
         this.rear = 0;
         this.size = 0;
-        this.balance = 25000;
+        this.balance = 5000;
     }
 
     /*
@@ -355,9 +401,10 @@ class Queue
      * deletes the front item from the queue. It needs no data input
      */
     deQueue()
-    {          
+    {       
         this.front++;  
         this.size--;
+        return this.queueData[this.front-1]; 
     }
 
     /*
@@ -406,7 +453,7 @@ class Queue
     }
     deposite(damount)
     {
-        this.balance = this.balance + damount;
+        this.balance = parseInt(this.balance) + parseInt(damount);
        console.log("balance--"+this.balance); 
     }
     cashCounter(people)
@@ -434,7 +481,7 @@ class Queue
             case 2:
                 {
                     console.log("Enter the deposite amount :");
-                    let amount = this.readInput();
+                    let amount = parseInt(this.readInput());
                     this.deposite(amount);
                     this.deQueue();
                     this.printQueue();
@@ -444,7 +491,325 @@ class Queue
         }
 
     }
+/*
+ *  an algorithm to input a string of characters and check whether it is a palindrome.
+ */
+    stringPalindrome(str)
+    {
+        for(let i=0; i<str.length; i++ )
+        {
+            this.enQueue(str.charAt(i))
+        }
+        //console.log("458--rear--"+this.rear);
+        
+        this.printQueue()
+        let s ="" ;
+        let count = 0;
+        for(let i=0; i<str.length; i++ )
+        {
+            s =  this.deQueue()
+            //console.log("front-464-"+this.front);
+            this.enQueue(s);
+            //console.log("rear 467=="+this.rear);
+        }
+        let j = this.rear-1;
+        //console.log("j-480--"+j);
+        
+        for(let i=this.front; i<this.rear; i++)
+        {
+                if(this.queueData[i] === this.queueData[j])
+                {
+                    count = 1;
+                }
+                else
+                {
+                    count = 0;
+                    break;
+                }
+                  j--; 
+        }
+             
+        if (count === 1)
+        {
+            console.log("true");
+        }
+        else
+        {
+           console.log("false");
+        }
+    }
+
 }
+/*
+ * this function will check wether number is palindrome or not
+ */
+// function prime(num)
+// {
+//     let count=0;
+    
+//     for(let j=2;j<=num;j++)
+//     {
+//         if(num%j==0)
+//         {
+//             count++;            
+//         }	
+//     }
+//         if(count==1)
+//         {
+//            // console.log(i);
+//            return num;
+//         }
+//         else
+//         return 0;    
+// }
 
-module.exports = {linkedList , Stack, Queue}
+/*
+ *  to find prime number within 0-1000
+ */
 
+class PrimeNum{
+
+    calPrimeNumber()
+    {
+    let count=0;
+    let col=0;
+   
+    let arr = new Array()
+
+    for(let i=0;i<10;i++)
+    {
+        arr[i]=new Array();
+    }
+
+    let oneDarr = new Array();
+    let oned = 0;
+
+    let row=2;
+    for (let i=1; i<=10; i++)
+    {        
+        process.stdout.write("" + i-1 +"01 to " + 100*i+" are: ");
+        
+        for(let k=row; k<=100*i; k++)
+        {
+            //console.log(k);            
+            for(let j=2;j<=k;j++)
+            {
+                if(k%j==0)
+                {
+                    count++;            
+                }	
+            }
+                // row=j;
+            if(count==1)
+            {
+                //console.log(i);
+                    arr[i-1][col]=k;
+                    oneDarr[oned] = arr[i-1][col];       //store prime num in one d array to pass it anagram function
+                   process.stdout.write(` ${arr[i-1][col]}`);             
+                    col++;
+                    oned++;
+            }
+            row=k;
+            count=0;
+        }            
+       console.log();
+    }
+  console.log("total prime num: "+col);
+  
+}
+}
+/*
+ * prime num for anagram
+ */
+function PrimeNumAnagram()
+{
+    let count=0;
+    let col=0;
+   
+    let arr = new Array()
+
+    for(let i=0;i<10;i++)
+    {
+        arr[i]=new Array();
+    }
+
+    let oneDarr = new Array();
+    let oned = 0;
+
+    let row=2;
+    for (let i=1; i<=10; i++)
+    {        
+        //process.stdout.write("" + i-1 +"01 to " + 100*i+" are: ");
+        
+        for(let k=row; k<=100*i; k++)
+        {
+            //console.log(k);            
+            for(let j=2;j<=k;j++)
+            {
+                if(k%j==0)
+                {
+                    count++;            
+                }	
+            }
+                // row=j;
+            if(count==1)
+            {
+                //console.log(i);
+                    arr[i-1][col]=k;
+                    oneDarr[oned] = arr[i-1][col];       //store prime num in one d array to pass it in anagram function
+                  // process.stdout.write(` ${arr[i-1][col]}`);             
+                    col++;
+                    oned++;
+            }
+            row=k;
+            count=0;
+        }            
+      // console.log();
+    }
+    return oneDarr;
+}
+/*
+ * store the numbers in the range that are Anagrams.
+ */ 
+
+ class anagramNum
+ {
+     anagram(pno)
+     {
+        let anaNum = new Array()
+        let notAna = new Array()
+        let k=0;
+        let j=0;
+        let n=0
+        let prim=0
+        let arr = [[],[]]
+        
+        // console.log(pno);
+        //console.log(pno.length);
+        
+            for(let i=0; i<pno.length; i++)
+            {
+                if(pno[i] > 11)
+                {
+                    let a=pno[i]
+                    let len = ""
+                    len=a.toString().length;
+                
+                    n= this.secondNum(pno[i]) 
+                    // console.log("26--"+n)   
+                    prim = this.prime(n);
+                    //console.log("28--"+prim)
+        
+                
+                    if(n==prim)
+                    {
+                        let val=this.isAnagram(n , pno[i]) 
+                        //console.log(val);
+                        if(val === true)
+                        {
+                            //console.log(val);            
+                            anaNum[k] = n;  
+                            arr[[0],[k]] = n         
+                            k++;
+                        }
+                        else
+                        {
+                            notAna[j] = pno[i];
+                            arr[[0],[k]] = pno[j]
+                            j++;
+                        }  
+                    }                
+                 
+                }  
+            }
+        //console.log("anano--"+anaNum);
+        // console.log("notanano--"+notAna);
+        return arr;        
+    }
+    /*
+ * this function will generate reverse no of prime no 
+ */
+    secondNum(num)
+    {
+        let len = num.toString().length;
+        //console.log(len);
+        let str = num.toString();
+        //console.log("22---"+str);
+    
+        let temp1=""
+        let temp2=""
+        let temp3 = ""
+        let no = 0
+        if(len ==2)
+        {
+            temp1 = str.charAt(0);
+            temp2 = str.charAt(1)
+            no=temp2+temp1;
+        }   
+    
+        if(len ==3)
+        {
+            temp1 = str.charAt(0);
+            temp2 = str.charAt(1)
+            temp3 = str.charAt(2)
+            no=temp2+temp3+temp1;
+        } 
+        //console.log("81 no--"+no);    
+        return no;
+    }
+    /*
+     * to find prime number 
+     */
+    prime(num)
+    {
+    let count=0;
+    
+        for(let j=2;j<=num;j++)
+        {
+            if(num%j==0)
+            {
+                count++;            
+            }	
+        }
+        if(count==1)
+        {
+           // console.log(i);
+           return num;
+        }
+        else
+        return 0;    
+    }   
+
+/*
+ *this function will check anagram of two prime no
+ */
+
+    isAnagram(num1 , num2)
+    {
+        let n1=num1.toString();
+        let n2=num2.toString();
+        let count=0;	
+   
+       for(let i=0;i<n1.length;i++)
+       {
+           let s=n1.charAt(i);
+           for(let j=0;j<n2.length;j++)
+           {					
+               if(s==n2.charAt(j))
+               {
+                   count++;
+               }
+           }
+       }
+       if(count==n1.length)
+           return true;
+       else
+           return false;
+   
+    }
+ }
+
+
+
+
+module.exports = {ReadInput, linkedList , Stack, Queue,PrimeNum, PrimeNumAnagram, anagramNum}

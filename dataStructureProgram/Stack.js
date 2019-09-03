@@ -35,7 +35,7 @@ for(let i=0; i<str.length-1; i++)
 }
 
 
-console.log(stackobj.push(50));
+//console.log(stackobj.push(50));
 stackobj.printStack();
 
 let result = stackobj.isEmpty();
