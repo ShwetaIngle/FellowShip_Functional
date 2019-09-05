@@ -16,7 +16,7 @@ function inventoryDataManage()
 {
     const util = require("../Utility/week3Utility.js")
 
-    let val = util.inventoryDataManagement();
+    let val = util.inventoryData();
     console.log("\nTotal value of rice, pulses and wheat : "+val);    
 
 }

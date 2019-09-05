@@ -11,7 +11,7 @@
 
 
 class Vehicle {
-    constructor(model) {
+    constructor() {
         this.model = model;
     }
     

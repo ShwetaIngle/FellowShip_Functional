@@ -619,16 +619,7 @@ module.exports = {
         }
     },
 
-    /******************************************************************************
-  *  Execution:    ~/Desktop/shweta/dataStructureProgram$ node linkedList.js
-  *  
-  *  Purpose: linked functions : add , remove
-  *
-  *  @author  Ingle Shweta
-  *  @version 1.0
-  *  @since   29-08-2017
-  *
-  ******************************************************************************/
+   
    
    
 

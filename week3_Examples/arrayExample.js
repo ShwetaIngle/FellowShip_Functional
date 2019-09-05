@@ -21,10 +21,8 @@ function array()
     console.log("array splice => "+arrsplice);
     
     // let arrfilter = arr.filter();
-    // console.log("array filter => "+arrfilter);
-    
-   
-    
+    // console.log("array filter => "+arrfilter);    
+  
 }
 
 array();

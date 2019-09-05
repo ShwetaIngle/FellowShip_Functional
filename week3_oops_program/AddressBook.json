@@ -1,0 +1,47 @@
+[
+    {
+        "first_name": "Shweta",
+        "last_name": "Ingle",
+        "address": "Sector 4, Koperkhairne",
+        "city": "Mumbai",
+        "State": "Maharashtra",
+        "zip": 400709,
+        "phone_no": 8624956036
+    },
+    {
+        "first_name": "Monika",
+        "last_name": "Ombale",
+        "address": "Dhankawadi, Katraj",
+        "city": "Pune",
+        "State": "Maharashtra",
+        "zip": 411043,
+        "phone_no": 8329931385
+    },
+    {
+        "first_name": "sangita",
+        "last_name": "awaghad",
+        "address": "vashi",
+        "city": "Mumbai",
+        "state": "Maharashtrs",
+        "zip": "431203",
+        "phone_no": "9422329006"
+    },
+    {
+        "first_name": "abc",
+        "last_name": "xyz",
+        "address": "govalkhind",
+        "city": "pune",
+        "State": "Maharashtra",
+        "zip": "411010",
+        "phone_no": "8329891396"
+    },
+    {
+        "first_name": "a",
+        "last_name": "b",
+        "address": "c",
+        "city": "p",
+        "State": "m",
+        "zip": "1",
+        "phone_no": "23"
+    }
+]
