@@ -18,19 +18,27 @@
 const utility = require("./Utility.js");
 const read = require("readline-sync");
 
+var fs = require('fs');
+
+module.exports = {
+
     /* Function for the Input */
-    function readInput() {
+    readInput() {
         let input = read.question();
         return input;
-    }
+    },
 
+    /**
+    * purpose method for inventoryData management
+    *
+    * @param data taken from json file
+    */
 
-    function inventoryData()
+    inventoryData()
     {
-        var fs = require('fs');
 
     //access .json file
-    var data = JSON.parse(fs.readFileSync('/home/user/Desktop/shweta/week3_oops_program/inventryDataManagement.json'));
+    var data = JSON.parse(fs.readFileSync('/home/user/Desktop/shweta/json files/inventryDataManagement.json'));
      console.log(data); 
     // console.log(data.Rice[0].name);  
     
@@ -41,7 +49,7 @@ const read = require("readline-sync");
     for(itr in data.Rice)
     {
         var rval=(data.Rice[itr].weight*data.Rice[itr].price);  
-        console.log("value of "+data.Rice[itr].name+" : "+rval);
+        // console.log("value of "+data.Rice[itr].name+" : "+rval);
         rice_val += rval; 
     }
     console.log();
@@ -51,7 +59,7 @@ const read = require("readline-sync");
     for(itr in data.Pulses)
     {
         var pval=(data.Pulses[itr].weight*data.Pulses[itr].price);        
-        console.log("value of "+data.Pulses[itr].name+" : "+pval);
+        // console.log("value of "+data.Pulses[itr].name+" : "+pval);
         Pulses_val += pval
     }
     console.log();
@@ -61,106 +69,29 @@ const read = require("readline-sync");
     for(itr in data.Wheat)
     {
         var Wval=(data.Wheat[itr].weight*data.Wheat[itr].price);        
-        console.log("value of "+data.Wheat[itr].name+" : "+Wval);
+        //console.log("value of "+data.Wheat[itr].name+" : "+Wval);
         Wheat_val += Wval;
     }
     let total = rice_val + Pulses_val + Wheat_val;
     return total;
-    }
-
-/**
- * Address book =>
- * An address book holds a collection of entries, each recording a person's first and last names, 
- * address, city, state, zip, and phone number.
- */
-var fs = require('fs');
- class address_Book
- {
-    readInput() {
-        let input = read.question();
-        return input;
-    }
-   /**
-    * Constructor to take the inputs
-    *
-    * @first_name, last_name, address, city, state, zip, phone_no 
-    */
-    constructor(first_name, last_name, address, city, state, zip, phone_no)
-    {
-        this.first_name = first_name
-        this.last_name = last_name
-        this.address = address
-        this.city = city
-        this.state = state
-        this.zip = zip
-        this.phone_no = phone_no
-    }
-     /**
-    * function to read the json file
-    *
-    * @ read returns first_name, last_name, address, city, state, zip, phone_no from json file in array
-    */
-    readJson()
-    {
-        return JSON.parse(fs.readFileSync("/home/user/Desktop/shweta/week3_oops_program/AddressBook.json"));
-    }
+    },
 
     /**
-    * function to write into json file
+    * purpose method for stockReport
     *
-    * @ writeFileSync returns first_name, last_name, address, city, state, zip, phone_no into json file in array
+    *  data taken from json file
     */
-    writeJson(datawrite)
+    stockReport()
     {
-        return fs.writeFileSync("/home/user/Desktop/shweta/week3_oops_program/AddressBook.json", JSON.stringify(datawrite))
-    }
-
-    /**
-    * function to add data in json file
-    *
-    * @first_name, last_name, address, city, state, zip, phone_no adds all data into .json file
-    */
-   
-    addData()
-    {
-        console.log("Enter the first name :")
-        let name = this.readInput();
-        console.log("Enter the last name : ")
-        let lastname = this.readInput();
-        console.log("Enter the address : ");
-        let addr = this.readInput();
-        console.log("Enter the city : ");
-        let city = this.readInput()
-        console.log("Enter the state : ");
-        let state = this.readInput()
-        console.log("Enter the zip code : ");
-        let zipcode = this.readInput()
-        console.log("Enter the phone_no");
-        let phone_num = this.readInput();    
+        let stockData = JSON.parse(fs.readFileSync('/home/user/Desktop/shweta/json files/stockReport.json'));
+        //console.log(stockData);
         
-        let addobj = new address_Book(name, lastname, addr, city, state, zipcode, phone_num );
-        // console.log(addobj);
-        
-        var jsondata = this.readJson();
-        // console.log(jsondata);        
+        for(let i=0; i<stockData.length; i++)
+        {
+            var value = stockData[i].Number_of_Share*stockData[i].Share_Price;
+            console.log(stockData[i].Stock_Names+"\t",value);            
+        }
+    },
 
-        jsondata.push(addobj);
-        // console.log(jsondata);
-        
-       this.writeJson(jsondata)             
-    }
 
-    /**
-    * function to delete data from json file
-    *
-    * @person's first_name delets data from .json file
-    */
-    
-    deleteData()
-    {
-        console.log("Enter the first name : ");        
-    }
-        
- }
-
-module.exports = {address_Book, readInput, inventoryData}
+}

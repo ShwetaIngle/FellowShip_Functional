@@ -1,0 +1,17 @@
+[
+    {
+        "Stock_Names" : "TCS",
+        "Number_of_Share" :50,
+        "Share_Price" : 1500
+    },
+    {
+        "Stock_Names" : "Infosys",
+        "Number_of_Share" :75,
+        "Share_Price" : 1000
+    },
+    {
+        "Stock_Names" : "wipro",
+        "Number_of_Share" :85,
+        "Share_Price" : 1200
+    }
+]
