@@ -110,7 +110,6 @@ const read = require("readline-sync");
       return this.address;
   }
 
-
    /**
     * @purpose method to set city
     *

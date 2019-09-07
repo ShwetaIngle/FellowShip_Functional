@@ -1,0 +1,20 @@
+[
+    {
+        "userNames" : "A",
+        "Stock_Names":"TCS",
+        "Number_of_Share" :20,
+        "acc_balance" :50000
+    },
+    {
+        "userNames" : "B",
+        "Stock_Names" : "Infosys",
+        "Number_of_Share" :15,
+        "acc_balance" :75000        
+    },
+    {
+        "userNames" : "C",
+        "Stock_Names" : "wipro",
+        "Number_of_Share" :10,
+        "acc_balance" :85000
+    }
+]
