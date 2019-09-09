@@ -1,20 +1,56 @@
 [
     {
-        "userNames" : "A",
-        "Stock_Names":"TCS",
-        "Number_of_Share" :20,
-        "acc_balance" :50000
+        "userNames": "A",
+        "acc_balance": 47000,
+        "Stock_Names": [
+            {
+                "Names": "TCS",
+                "Number_of_Share": 12
+            },
+            {
+                "Names": "Infosys",
+                "Number_of_Share": 10
+            },
+            {
+                "Names": "wipro",
+                "Number_of_Share": 10
+            }
+        ]
     },
     {
-        "userNames" : "B",
-        "Stock_Names" : "Infosys",
-        "Number_of_Share" :15,
-        "acc_balance" :75000        
+        "userNames": "B",
+        "acc_balance": 73000,
+        "Stock_Names": [
+            {
+                "Names": "TCS",
+                "Number_of_Share": 10
+            },
+            {
+                "Names": "Infosys",
+                "Number_of_Share": 12
+            },
+            {
+                "Names": "wipro",
+                "Number_of_Share": 10
+            }
+        ]
     },
     {
-        "userNames" : "C",
-        "Stock_Names" : "wipro",
-        "Number_of_Share" :10,
-        "acc_balance" :85000
+        "userNames": "C",
+        "acc_balance": 85000,
+        "Stock_Names": [
+            {
+                "Names": "TCS",
+                "Number_of_Share": 10
+            },
+            {
+                "Names": "Infosys",
+                "Number_of_Share": 10
+            },
+            {
+                "Names": "wipro",
+                "Number_of_Share": 10
+            }
+        ]
     }
 ]

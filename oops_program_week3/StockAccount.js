@@ -24,7 +24,7 @@ function Commercial_data_processing()
     {
         case 1:
         {
-            console.log("1.Buy \t 2.Sell");
+            console.log("please select---  1.Buy \t 2.Sell");
             let choice=parseInt(stockObj.readInput())
 
             switch(choice)
@@ -36,13 +36,23 @@ function Commercial_data_processing()
                     console.log("Which stock you want to buy....\tTCS \t Infosys \t Wipro");
                     stockObj.stock_Name = stockObj.readInput();
                     console.log("How many stock you want to buy :  ");
-                    stockObj.No_ofShare = stockObj.readInput();   
+                    stockObj.No_ofShare = parseInt(stockObj.readInput());   
                     
-                    stockObj.Buy();                                     
+                    let buy = stockObj.checkData(); 
+                    console.log(buy);                                                        
                 }
                 case 2:
                 {
-
+                    console.log("Enter the user name:");
+                    stockObj.User_Name = stockObj.readInput();
+                    console.log("Which stock you want to sell....\tTCS \t Infosys \t Wipro");
+                    stockObj.stock_Name = stockObj.readInput();
+                    console.log("How many stock you want to sell :  ");
+                    stockObj.No_ofShare = parseInt(stockObj.readInput());
+                    
+                    let sell = stockObj.sellCheck();
+                    console.log(sell);
+                    break;                    
                 }
             }
             break;

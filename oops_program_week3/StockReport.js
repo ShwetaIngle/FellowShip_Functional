@@ -14,9 +14,10 @@
 
 function Stock_Report()
 {
-    const util = require("../Utility/week3Utility.js")
+    const util = require("../Utility/stockReportUtility")
 
-    let stockval = util.stockReport();  
+    let stockval = new util.Stock_Report;  
+    stockval.report()
     
 }
 Stock_Report();

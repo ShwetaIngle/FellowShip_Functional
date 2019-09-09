@@ -2,6 +2,7 @@ const assert = require('chai').assert;
 
 const data = require('../Utility/Utility.js');
 
+
 describe("test cases", function(){
 
 let value=data. binarySearch(['ab','xy','ijk'],'ab');

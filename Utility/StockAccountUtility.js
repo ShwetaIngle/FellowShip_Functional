@@ -103,37 +103,160 @@ class stockAccount extends dataEntry
         return input;
     }
 
+    writeReportJson(datawrite)
+    {
+        return fs.writeFileSync("/home/user/Desktop/shweta/json files/stockReport.json", JSON.stringify(datawrite))
+    }
+
+    writeAccJson(datawrite)
+    {
+        return fs.writeFileSync("/home/user/Desktop/shweta/json files/StockAccount.json", JSON.stringify(datawrite))
+    }
     /**
-    * purpose method to replace name using regex
+    * purpose method to buy stock
     *
-    *  @param name taken from user
+    *  @param name, no of share, stock name taken from user using getter/setter
     */
 
     Buy()
     {
-        var jsonReportData = this.readStockReportJson();
-        //console.log(jsonReportData[0]);
-        var jsonAccData = this.readStockAccJson();
-        //console.log(this.jsonAccData);
-        //this.stock_Name="TCS"
-        for(let i=0; i<jsonReportData.length; i++)
+        var jreportData = this.readStockReportJson();
+        
+        var jaccData = this.readStockAccJson();
+        
+        for(let i=0; i<jreportData.length; i++)
         {
-            if(jsonReportData[i].Stock_Names == this.stock_Name)
+            if(jreportData[i].Stock_Names == this.stock_Name)
             {
-                console.log(jsonReportData[i].Stock_Names);
+                if(this.No_ofShare < jreportData[i].Number_of_Share) 
+                {               
+                    var price = this.No_ofShare * jreportData[i].Share_Price;
+
+                    for(let a=0; a<jaccData.length; a++)
+                    {
+                        if(jaccData[a].userNames == this.User_Name && jaccData[a].acc_balance > price)
+                        {
+                            // if(jaccData[a].acc_balance > price)
+                            // {
+                                jaccData[a].acc_balance = jaccData[a].acc_balance - price;
+
+                                for(let k=0; k<jaccData[a].Stock_Names.length; k++)
+                                {
+                                    if(jaccData[a].Stock_Names[k].Names == this.stock_Name)
+                                    {
+                                        jaccData[a].Stock_Names[k].Number_of_Share += this.No_ofShare
+                                        //return jaccData[a].acc_balance;
+                                    }
+                                // }                               
+                            }           
+                            // else{
+                            //     let msg = "not enough balance to buy "+this.No_ofShare+" stock share";
+                            //     return msg;
+                            // } 
+                            break;               
+                        }
+                        // else
+                        // {
+                        //     return "Enter correct user name"
+                        // }
+                    }
+                    jreportData[i].Number_of_Share=jreportData[i].Number_of_Share - this.No_ofShare;
+                    //console.log("125---",jreportData[i].Number_of_Share);
+                    break;
+                }
+                // else
+                // {
+                //     let str = "only "+ jreportData[i].Number_of_Share +" shares are available"
+                //     return str
+                // }
+            }
+            // else
+            // {
+            //     return "enter valid stock name"  
+            // }
+        }
+        this.writeReportJson(jreportData);
+
+        this.writeAccJson(jaccData);        
+
+    }
+
+    checkData()
+    {
+        var jreportData = this.readStockReportJson();        
+        var jaccData = this.readStockAccJson();
+
+        let count=0, flag=0;
+        for(let i=0; i<jreportData.length; i++)
+        {
+            var price = this.No_ofShare * jreportData[i].Share_Price;
+
+            // check stock name & no of share
+            if(jreportData[i].Stock_Names == this.stock_Name
+                && this.No_ofShare < jreportData[i].Number_of_Share)
+            {
+                count =1
                 break;
             }
-            else
-            {
-                console.log("sry");
-                //console.log(jsonReportData.Stock_Name)
+            else{
+                count =0 
             }
         }
+        
+        for(let a=0; a<jaccData.length; a++)
+        {
+            
+            if(jaccData[a].userNames == this.User_Name && jaccData[a].acc_balance > price)
+            {
+                flag = 1;
+                break;
+            }
+        }
+        if(count == 1 && flag == 1)
+        {
+            this.Buy();
+            return "thank you"
+        }
+        else{
+            return "Enter correct data"
+        }
     }
+
+    /**
+    * purpose method to sell stock
+    *
+    *  @param name, no of share, stock name taken from user using getter/setter
+    */
+
+   sellCheck()
+    {
+        let jsonData = this.readStockAccJson();
+        let flag = 0;
+
+        for(let a=0; a<jaccData.length; a++)
+        {            
+            if(jaccData[a].userNames == this.User_Name )   //check user name
+            {
+                for(let k=0; k<jaccData[a].Stock_Names.length; k++)
+                {
+                    //check stock name
+                    if(jaccData[a].Stock_Names[k].Names == this.stock_Name)
+                    {
+                        flag = 1;
+                        break;
+                    }
+                }           
+                
+            }
+        }
+
+    }
+     
+
+
 }
 
-var obj = new stockAccount()
-obj.Buy();
+
 
 
 module.exports = {stockAccount}
