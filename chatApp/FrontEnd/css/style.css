@@ -1,0 +1,88 @@
+.backgroundimage
+{
+    background-image: url("../asserts/background2.jpg");
+    background-repeat: repeat-y;   
+    opacity: 0.9;
+}
+
+.register
+{
+    background-color: white;
+    width: 30%;
+    height: 50%;
+    margin-left:430px ;
+    margin-top: 200;
+}
+
+.rcontent
+{
+    
+    padding:85; 
+    padding-top: 45;
+    align-self: auto;
+    font-size : 16px;    
+}
+
+.buttonstyle
+{
+    background-color: green;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+}
+.headline
+{
+    color: cornflowerblue;
+    text-align: center;
+    padding-top: 50
+}
+
+.lcontent
+{
+    
+    padding:85; 
+    padding-top: 40;
+    align-self: auto;
+    font-size : 16px;    
+}
+.lregister
+{
+    background-color: white;
+    width: 30%;
+    height: 40%;
+    margin-left:430px ;
+    margin-top: 200
+}
+.lheadline
+{
+    color: cornflowerblue;
+    text-align: center;
+    padding-top: 50
+}
+.rtitle{
+    background-color: black;
+    height: 10%;
+    width: 99%;
+}
+.titleheader
+{
+    color: blanchedalmond;
+    margin-left: 60;
+    padding-top: 20;
+    font-size:35px;
+    font-style: italic;
+    font-weight: bold;
+    float: left;
+}
+.options
+{    
+    text-align: center;
+    list-style-type:none;    
+}
+.list{
+    float: right;
+    padding:20px;
+    color: blanchedalmond;
+    padding-top: 30px;
+}
+

@@ -5,7 +5,9 @@
   "main": "hello.js",
   "dependencies": {
     "chai": "^4.2.0",
+    "express": "^4.17.1",
     "mocha": "^6.2.0",
+    "mongodb": "^3.3.2",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {},
