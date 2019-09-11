@@ -41,7 +41,7 @@
 {
     
     padding:85; 
-    padding-top: 40;
+    padding-top: 20;
     align-self: auto;
     font-size : 16px;    
 }
@@ -84,5 +84,13 @@
     padding:20px;
     color: blanchedalmond;
     padding-top: 30px;
+}
+.forgotsubmit
+{
+    float: center;
+    background-color: green;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
 }
 
